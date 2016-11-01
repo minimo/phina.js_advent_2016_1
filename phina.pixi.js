@@ -76,7 +76,7 @@ phina.define('phina.pixi.Sprite', {
   },
 
   setImage: function(newImage, width, height) {
-    this.image = newImage;
+    this._image = newImage;
     this.pixiObject = new PIXI.Sprite.fromImage(newImage.src);
     this.pixiObject.texture.baseTexture.width = this.image.domElement.width;
     this.pixiObject.texture.baseTexture.height = this.image.domElement.height;
