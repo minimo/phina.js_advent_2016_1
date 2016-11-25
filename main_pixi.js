@@ -56,20 +56,18 @@ phina.define('MainScene', {
     if (type == "phina") {
       sp = phina.display.Sprite(this.texture, 64, 64)
         .addChildTo(this.phinaLayer)
-        .setFrameTrimming(192, 128, 192, 64)
-        .setFrameIndex(0)
+        .setFrameIndex(1)
         .setPosition(position.x, position.y);
     } else {
       sp = phina.pixi.Sprite(this.texture, 64, 64)
         .addChildTo(this.pixiLayer)
-        .setFrameTrimming(192, 128, 192, 64)
-        .setFrameIndex(0)
+        .setFrameIndex(1)
         .setPosition(position.x, position.y);
     }
     sp.vec = phina.geom.Vector2(Math.randint(-10, 10), Math.randint(-10, 10));
     sp.alpha = Math.randfloat(0.2, 1.0);
     sp.update = function(e) {
-      this.frameIndex++;
+      if (e.ticker.frame %4 == 0) this.frameIndex = (this.frameIndex+1)%3+1
       this.rotation++;
       this.position.add(this.vec);
       if (this.x < 0 || this.x > SC_W) this.vec.x *= -1;
